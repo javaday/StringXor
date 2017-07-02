@@ -16,46 +16,14 @@ namespace StringXor
 
             if (input.Length > 1)
             {
-                var jumbled = jumble(input);
+                var jumbled = input.Xor();
                 Console.WriteLine($"Jumbled: {jumbled}");
 
-                var original = jumble(jumbled);
+                var original = jumbled.Xor();
                 Console.WriteLine($"Original: {original}");
 
                 Console.ReadLine();
             }
-        }
-
-        static string jumble(string input)
-        {
-            var result = "";
-            var xorResult = xor(input);
-
-            result += input[0];
-
-            do
-            {
-                result += xorResult[0];
-                xorResult = xor(xorResult);
-            }
-            while (xorResult.Length > 1);
-
-            result += xorResult;
-
-            return result;
-        }
-
-        static string xor(string input)
-        {
-            var chars = input.ToCharArray();
-            var result = new char[chars.Length - 1];
-
-            for(int i = 0; i < result.Length; i++)
-            {
-                result[i] = (char)(chars[i] ^ chars[i + 1]);
-            }
-
-            return new string(result);
         }
     }
 }

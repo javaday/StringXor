@@ -47,5 +47,14 @@ namespace StringXor.Tests
 
             Assert.That(jumbledString.Xor(), Is.EqualTo(asciiChars));
         }
+
+        [Test]
+        public void WorksWithLargeTexts()
+        {
+            string testString = Properties.Resources.Raven;
+            string jumbledString = testString.Xor();
+
+            Assert.That(jumbledString.Xor(), Is.EqualTo(testString));
+        }
     }
 }
